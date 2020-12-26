@@ -5,7 +5,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: 0 4,20 * * *
+    - cron: 36 6,18 * * *
   push:
     branches: [ master ]
   pull_request:
