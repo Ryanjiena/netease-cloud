@@ -207,9 +207,9 @@ class Task(object):
             self.list.append("- 消息推送\n\n")
             self.dakaSongs_list = ''.join(self.list)
             self.server()
-#         except:
-#             self.log('用户任务执行中断,请检查账号密码是否正确')
-#             logging.error('用户任务执行中断,请检查账号密码是否正确========================================')
+        except:
+            self.log('用户任务执行中断,请检查账号密码是否正确')
+            logging.error('用户任务执行中断,请检查账号密码是否正确========================================')
         else:
             self.log('用户:' + self.name + '  今日任务已完成')
             logging.info('用户:' + self.name + '  今日任务已完成========================================')
