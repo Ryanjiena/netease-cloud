@@ -110,16 +110,17 @@ class Task(object):
     def server(self):
         if self.sckey == '':
             return
-        url = 'https://sc.ftqq.com/' + self.sckey + '.send'
+        url = 'https://qmsg.zendee.cn/group/' + self.sckey
         self.diyText() # 构造发送内容
-        response = requests.get(url,params={"text":self.title, "desp":self.content})
-        data = json.loads(response.text)
-        if data['errno'] == 0:
-            self.log('用户:' + self.name + '  Server酱推送成功')
-            logging.info('用户:' + self.name + '  Server酱推送成功')
-        else:
-            self.log('用户:' + self.name + '  Server酱推送失败,请检查sckey是否正确')
-            logging.info('用户:' + self.name + '  Server酱推送失败,请检查sckey是否正确')
+        self.message = self.title + self.content
+        response = requests.get(url,params={"msg":self.message})
+#         data = json.loads(response.text)
+#         if data['errno'] == 0:
+#             self.log('用户:' + self.name + '  Server酱推送成功')
+#             logging.info('用户:' + self.name + '  Server酱推送成功')
+#         else:
+#             self.log('用户:' + self.name + '  Server酱推送失败,请检查sckey是否正确')
+#             logging.info('用户:' + self.name + '  Server酱推送失败,请检查sckey是否正确')
 
     '''
     自定义要推送到微信的内容
@@ -206,9 +207,9 @@ class Task(object):
             self.list.append("- 消息推送\n\n")
             self.dakaSongs_list = ''.join(self.list)
             self.server()
-        except:
-            self.log('用户任务执行中断,请检查账号密码是否正确')
-            logging.error('用户任务执行中断,请检查账号密码是否正确========================================')
+#         except:
+#             self.log('用户任务执行中断,请检查账号密码是否正确')
+#             logging.error('用户任务执行中断,请检查账号密码是否正确========================================')
         else:
             self.log('用户:' + self.name + '  今日任务已完成')
             logging.info('用户:' + self.name + '  今日任务已完成========================================')
